@@ -1,10 +1,24 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import assets from '../assets/assets'
 import { messagesDummyData } from '../assets/assets.js'
 
-const scrollEnd = useRef()
+
 
 const ChatContainer = ({ selectedUser, setSelectedUser }) => {
+
+  const scrollEnd = useRef()
+
+  useEffect(() => {
+    scrollEnd.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [])
+
+  useEffect(() => {
+    if (scrollEnd.current) {
+      scrollEnd.current.scrollIntoView({ behavior: 'smooth' })
+    }
+    }, [])
+
+
   return selectedUser ? (
     <div className= 'h-full overflow-scroll relative backdrop-blur-lg'>
       <div className='flex items-center gap-3 py-3 mx-4 border-b border-stone-500' >

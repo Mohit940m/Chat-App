@@ -75,7 +75,7 @@ export const Login = async (req, res) => {
             })
         }
 
-        const userData = User.findById({ email })
+        const userData = await User.findOne({ email })
 
         if (!userData) {
             return res.status(400).json({
@@ -97,12 +97,14 @@ export const Login = async (req, res) => {
         }
 
         const token = generateToken(userData._id)
+        const userResponse = userData.toObject();
+        delete userResponse.password;
 
-        res.status(400).json({
+        res.status(200).json({
             success: true,
             message: "Login Successful",
             token,
-            userData
+            userResponse
 
         })
     } catch (error) {

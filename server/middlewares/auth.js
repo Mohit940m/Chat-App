@@ -1,4 +1,3 @@
-import { use } from "react";
 import User from "../models/User.model.js"
 import jwt from "jsonwebtoken"
 

@@ -116,10 +116,10 @@ export const Login = async (req, res) => {
     }
 }
 
-export const checkAuth=async(req,res)=>{
+export const checkAuth = async (req, res) => {
     res.json({
-        success:true,
-        user:req.user
+        success: true,
+        user: req.user
     })
 }
 
@@ -143,7 +143,7 @@ export const updateProfile = async (req, res) => {
             user: updatedUser
         })
     } catch (error) {
-        res.status(300).json({
+        res.status(400).json({
             success: false,
             message: error.message
         })

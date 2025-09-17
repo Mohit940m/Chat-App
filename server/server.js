@@ -5,12 +5,47 @@ import http from 'http';
 import connectDB from './lib/db.js';
 import userRouter from "./routes/userRoutes.js";
 import messageRouter from "./routes/messageRoutes.js";
+import { Server} from "socket.io";
+
 
 
 
 // Create Express app and HTTP server
 const app = express();
 const server = http.createServer(app);
+
+// Create Socket.io server
+export const io = new Server(server, {
+  cors: {
+    origin: "*"
+  }
+});
+
+// store online users
+export const userSocketMep = {}; // {userId: socketId}
+
+// Socket.io connection
+io.on("connection", (socket) => {
+  const userId = socket.handshake.query.userId;
+  console.log("User connected: " + userId);
+
+  if (userId) {
+    userSocketMep[userId] = socket.id;
+  }
+
+  // emit to all users that user is online
+  io.emit("getOnlineUsers", Object.keys(userSocketMep));
+
+  socket.on("disconnect", () => {
+    console.log("User disconnected: " + userId);
+    delete userSocketMep[userId];
+    // emit to all users that user is offline
+    io.emit("getOnlineUsers", Object.keys(userSocketMep));
+  });
+});
+
+
+
 
 // Middleware
 app.use(cors());

@@ -1,11 +1,12 @@
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
-import { set } from "mongoose";
+import React from "react";
 
 
-const backendUrl = process.env.BACKEND_URL;
+const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+axios.defaults.baseURL = backendUrl;
 
 export const AuthContext = createContext();
 
@@ -20,10 +21,10 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
         if (token) {
             try {
-                const { data } = await axios.get(`${backendUrl}/api/auth/check`)
+                const { data } = await axios.get(`/api/auth/check`)
                 if(data.success){
                     setAuthUser(data.user);
-                    connectSocket();
+                    connectSocket(data.user);
                 } else {
                     toast.error(data.message);
                 }
@@ -38,10 +39,10 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (state, credentials) => {
         try {
-            const { data } = await axios.post(`${backendUrl}/api/auth/login`, credentials);
+            const { data } = await axios.post(`/api/auth/${state}`, credentials);
             if (data.success) {
-                setAuthUser(data.userData);
-                connectSocket(data.userData);
+                setAuthUser(data.userResponse);
+                connectSocket(data.userResponse);
                 axios.defaults.headers.common["token"] = data.token;
                 setToken(data.token);
                 localStorage.setItem("token", data.token);
@@ -67,13 +68,26 @@ export const AuthProvider = ({ children }) => {
 
 
     // Update user data function to update the user data in the context and local storage
+    const updateProfile = async (body)=>{
+        try {
+            const {data} = await axios.put(`/api/auth/update-profile`, body);
+            if(data.success){
+                setAuthUser(data.user);
+                toast.success("Profile updated successfully");
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error(error.message);
+        }
+    }
 
     // Connect socket functon to handle socket connection and online users update
-    const connectSocket = () => {
-        if(!userData || socket?._connected) return;
+    const connectSocket = (user) => {
+        if(!user || socket?._connected) return;
         const newSocket = io(backendUrl, {
             query: {
-                userId: userData._id
+                userId: user._id
             }
         });
         newSocket.connect();
@@ -89,14 +103,18 @@ export const AuthProvider = ({ children }) => {
             axios.defaults.headers.common["token"] = token;
         }
         checkAuth();
-    })
+    }, [token])
 
 
     const value = {
         axios,
         authUser,
         onlineUsers,
-        socket
+        socket,
+        login,
+        logout,
+        updateProfile,
+        token
     }
     return (
         <AuthContext.Provider value={value}>

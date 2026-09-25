@@ -100,12 +100,13 @@ export const sendMessage = async (req, res) => {
             imageUrl = uploadResponse.secure_url;
         }
 
-        const newMessage = new Message.create({
+        const newMessage = new Message({
             senderId,
             receiverId,
             text,
             image: imageUrl
-        })
+        });
+        await newMessage.save();
 
         // emit the message to receiver if online
         const receiverSocketId = userSocketMep[receiverId];

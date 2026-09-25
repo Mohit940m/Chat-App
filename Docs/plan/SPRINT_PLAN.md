@@ -5,7 +5,7 @@
 
 | # | Task | Status |
 |---|---|---|
-| 1 | 🚨 **Fix Bug:** Remove `new` keyword before `Message.create` in `server/controllers/Message.controller.js` (`sendMessage` method) | ❌ |
+| 1 | 🚨 **Fix Bug:** Remove `new` keyword before `Message.create` in `server/controllers/Message.controller.js` (`sendMessage` method) | ✅ |
 | 2 | Create `SignupPage.jsx` in frontend and wire up with API. | ❌ |
 | 3 | Add `/signup` route to `App.jsx`. | ❌ |
 

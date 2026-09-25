@@ -16,13 +16,13 @@
 ## EPIC-02: Real-time Messaging
 | Task | Code File(s) | Status | Notes |
 |---|---|---|---|
-| Send Message (Backend) | `server/controllers/Message.controller.js` | 🚨 | Bug in `sendMessage`: `new Message.create(...)` throws an error. Needs fix. |
+| Send Message (Backend) | `server/controllers/Message.controller.js` | ✅ | Fixed bug in `sendMessage`. |
 | Get Messages (Backend) | `server/controllers/Message.controller.js` | ✅ | `getMessages` implemented. |
 | Sidebar Users (Backend) | `server/controllers/Message.controller.js` | ✅ | `getUsersForSidebar` implemented, returns unseen message counts. |
 | Mark Seen (Backend) | `server/controllers/Message.controller.js` | ✅ | `markMessageSeen` implemented. |
 | Socket.io Connection | `server/server.js` | ✅ | Basic connection, mapping userId to socketId. |
 | Online Users | `server/server.js` | ✅ | `getOnlineUsers` emitted to all. |
-| New Message Event | `server/controllers/Message.controller.js` | ⚠️ | Event emitted to receiver if online, but blocked by the `new Message.create` bug. |
+| New Message Event | `server/controllers/Message.controller.js` | ✅ | Event emitted to receiver if online. Bug fixed. |
 
 ## EPIC-03: Frontend UI & User Experience
 | Task | Code File(s) | Status | Notes |

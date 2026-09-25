@@ -24,10 +24,10 @@
 
 | # | Task | Status |
 |---|---|---|
-| 1 | Install Jest and Supertest in `server/`. Configure `jest.config.js`. | ❌ |
-| 2 | Write backend unit tests for `User.controller.js` and `Message.controller.js`. | ❌ |
-| 3 | Install Vitest and React Testing Library in `client/`. | ❌ |
-| 4 | Write frontend unit tests for components. | ❌ |
+| 1 | Install Jest and Supertest in `server/`. Configure `jest.config.js`. | ✅ |
+| 2 | Write backend unit tests for `User.controller.js` and `Message.controller.js`. | ✅ |
+| 3 | Install Vitest and React Testing Library in `client/`. | ✅ |
+| 4 | Write frontend unit tests for components. | ✅ |
 
 ## Sprint 4: Final Polish & Deployment
 **Goal:** Review and prepare the app for deployment.

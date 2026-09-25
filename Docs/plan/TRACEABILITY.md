@@ -34,9 +34,9 @@
 ## EPIC-04: Unit Testing & Quality Assurance
 | Task | Code File(s) | Status | Notes |
 |---|---|---|---|
-| Backend Test Setup | N/A | ❌ | Jest not configured. |
-| Frontend Test Setup | N/A | ❌ | Vitest/RTL not configured. |
-| Unit Tests implementation | N/A | ❌ | No tests written. |
+| Backend Test Setup | N/A | ✅ | Installed Jest, configured `jest.config.cjs`. |
+| Frontend Test Setup | N/A | ✅ | Installed Vitest/RTL, updated `vite.config.js`. |
+| Unit Tests implementation | N/A | ✅ | Wrote backend tests for controllers and frontend test for `LoginPage.jsx`. |
 
 ## EPIC-05: API Testing (Postman)
 | Task | Code File(s) | Status | Notes |

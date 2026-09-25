@@ -34,5 +34,5 @@
 
 | # | Task | Status |
 |---|---|---|
-| 1 | Verify all real-time features (online users, live chat). | ❌ |
-| 2 | Code cleanup and final QA. | ❌ |
+| 1 | Verify all real-time features (online users, live chat). | ✅ |
+| 2 | Code cleanup and final QA. | ✅ |

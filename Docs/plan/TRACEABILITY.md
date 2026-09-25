@@ -41,6 +41,6 @@
 ## EPIC-05: API Testing (Postman)
 | Task | Code File(s) | Status | Notes |
 |---|---|---|---|
-| Postman Folder & Collection | `postman/collection.json` | ❌ | Not created. |
-| Postman Environment | `postman/environment.json` | ❌ | Not created. |
-| Postman README | `postman/README.md` | ❌ | Not created. |
+| Postman Folder & Collection | `postman/collection.json` | ✅ | Created collection. |
+| Postman Environment | `postman/environment.json` | ✅ | Created environment file. |
+| Postman README | `postman/README.md` | ✅ | Created README instructions. |

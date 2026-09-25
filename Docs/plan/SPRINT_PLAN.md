@@ -14,10 +14,10 @@
 
 | # | Task | Status |
 |---|---|---|
-| 1 | Create `postman/` directory. | ❌ |
-| 2 | Create Postman Collection JSON covering Auth and Message routes. | ❌ |
-| 3 | Create Postman Environment JSON with `base_url` and `token`. | ❌ |
-| 4 | Write `postman/README.md` with instructions on how to import and run tests. | ❌ |
+| 1 | Create `postman/` directory. | ✅ |
+| 2 | Create Postman Collection JSON covering Auth and Message routes. | ✅ |
+| 3 | Create Postman Environment JSON with `base_url` and `token`. | ✅ |
+| 4 | Write `postman/README.md` with instructions on how to import and run tests. | ✅ |
 
 ## Sprint 3: Unit Testing Setup & Implementation
 **Goal:** Ensure codebase is robust using unit tests.

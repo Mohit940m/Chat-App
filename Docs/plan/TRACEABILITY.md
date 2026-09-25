@@ -9,7 +9,7 @@
 | User Login (Backend) | `server/controllers/User.controller.js` | ✅ | `Login` implemented. |
 | Profile Update (Backend) | `server/controllers/User.controller.js` | ✅ | `updateProfile` implemented using Cloudinary. |
 | Check Auth (Backend) | `server/controllers/User.controller.js` | ✅ | `checkAuth` and `protectRoute` implemented. |
-| Registration Page (Frontend)| N/A | ❌ | `SignupPage.jsx` is missing. |
+| Registration Page (Frontend)| `client/src/pages/LoginPage.jsx` | ✅ | Integrated into LoginPage.jsx. |
 | Login Page (Frontend) | `client/src/pages/LoginPage.jsx` | ✅ | UI implemented. |
 | Profile Page (Frontend) | `client/src/pages/ProfilePage.jsx` | ✅ | UI implemented. |
 
@@ -29,7 +29,7 @@
 |---|---|---|---|
 | Chat UI Layout | `client/src/components/*` | ✅ | `ChatContainer`, `Sidebar`, `RightSidebar` implemented. |
 | Responsive Design | Tailwind Classes | ✅ | Basic responsive Tailwind is set up. |
-| Missing Routes | `client/src/App.jsx` | ⚠️ | Needs route for SignupPage. |
+| Missing Routes | `client/src/App.jsx` | ✅ | Signup route is handled via `/login`. |
 
 ## EPIC-04: Unit Testing & Quality Assurance
 | Task | Code File(s) | Status | Notes |

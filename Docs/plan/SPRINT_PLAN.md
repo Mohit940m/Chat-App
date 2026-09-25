@@ -6,8 +6,8 @@
 | # | Task | Status |
 |---|---|---|
 | 1 | 🚨 **Fix Bug:** Remove `new` keyword before `Message.create` in `server/controllers/Message.controller.js` (`sendMessage` method) | ✅ |
-| 2 | Create `SignupPage.jsx` in frontend and wire up with API. | ❌ |
-| 3 | Add `/signup` route to `App.jsx`. | ❌ |
+| 2 | Create `SignupPage.jsx` in frontend and wire up with API. | ✅ | Handled in `LoginPage.jsx`. |
+| 3 | Add `/signup` route to `App.jsx`. | ✅ | Handled in `/login` route. |
 
 ## Sprint 2: API Testing (Postman) Setup
 **Goal:** Document and test backend routes via Postman.

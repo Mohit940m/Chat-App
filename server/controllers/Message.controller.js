@@ -4,7 +4,7 @@ import cloudinary from "../lib/cloudinary.js";
 import { io, userSocketMep } from "../server.js";
 
 // get all users except logged in user
-export const getUsersForSidebar = async (req, res) => {
+export async function getUsersForSidebar(req, res) {
     try {
         const userId = req.user._id;
         const filteredUsers = await User.find({
@@ -42,7 +42,7 @@ export const getUsersForSidebar = async (req, res) => {
 }
 
  // get all messages between logged in user and selected user
-export const getMessages = async (req, res) => {
+export async function getMessages(req, res) {
     try {
         const { id: selectedUserId } = req.params;
         const myId = req.user._id;
@@ -71,7 +71,7 @@ export const getMessages = async (req, res) => {
 }
 
 // mark a message as seen
-export const markMessageSeen = async (req, res) => {
+export async function markMessageSeen(req, res) {
     try {
         const { id } = req.params;
         await Message.findByIdAndUpdate(id, { seen: true })
@@ -88,7 +88,7 @@ export const markMessageSeen = async (req, res) => {
 }
 
 // send a message to selected user
-export const sendMessage = async (req, res) => {
+export async function sendMessage(req, res) {
     try {
         const { text, image} = req.body;
         const receiverId = req.params.id;

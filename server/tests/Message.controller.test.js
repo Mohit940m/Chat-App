@@ -1,13 +1,21 @@
 import { jest } from '@jest/globals';
-import { getMessages, markMessageSeen } from '../controllers/Message.controller.js';
 import Message from '../models/Message.model.js';
 
-// Mock models and socket
-jest.mock('../models/Message.model.js');
-jest.mock('../server.js', () => ({
-  io: { to: jest.fn().mockReturnThis(), emit: jest.fn() },
-  userSocketMep: {}
+const mockTo = jest.fn().mockReturnThis();
+const mockEmit = jest.fn();
+
+jest.unstable_mockModule('../server.js', () => ({
+  io: {
+    to: mockTo,
+    emit: mockEmit
+  },
+  userSocketMep: {
+    'otherUser': 'socket123'
+  }
 }));
+
+// We must import the controller dynamically AFTER mocking the module
+const { getMessages, markMessageSeen, sendMessage } = await import('../controllers/Message.controller.js');
 
 describe('Message Controller', () => {
   let req, res;
@@ -18,14 +26,14 @@ describe('Message Controller', () => {
       status: jest.fn().mockReturnThis(),
       json: jest.fn()
     };
-    jest.clearAllMocks();
+    jest.restoreAllMocks();
   });
 
   describe('getMessages', () => {
     it('should fetch messages and mark as seen', async () => {
       req.params.id = 'otherUser';
-      Message.find.mockResolvedValue([{ text: 'Hello' }]);
-      Message.updateMany.mockResolvedValue({});
+      jest.spyOn(Message, 'find').mockResolvedValue([{ text: 'Hello' }]);
+      jest.spyOn(Message, 'updateMany').mockResolvedValue({});
 
       await getMessages(req, res);
       expect(Message.find).toHaveBeenCalled();
@@ -40,7 +48,7 @@ describe('Message Controller', () => {
   describe('markMessageSeen', () => {
     it('should mark message as seen', async () => {
       req.params.id = 'msg1';
-      Message.findByIdAndUpdate.mockResolvedValue({});
+      jest.spyOn(Message, 'findByIdAndUpdate').mockResolvedValue({});
 
       await markMessageSeen(req, res);
       expect(Message.findByIdAndUpdate).toHaveBeenCalledWith('msg1', { seen: true });
